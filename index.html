@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Imagined - Interactive Art Exhibition | Reality Da Nang</title>
+    <meta name="description" content="An exhibition without paintings - 21 artworks based on children's descriptions of famous art">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+            color: #2A2A2A;
+            background: #FFFFE3;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tagline {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6E6E6E;
+            margin-bottom: 0.25rem;
+            font-weight: 400;
+        }
+        
+        .sub-tagline {
+            text-align: center;
+            font-size: 1rem;
+            color: #6E6E6E;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(42,42,42,0.1);
+            border-bottom: 3px solid #FFFFE3;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-section {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .logo-link {
+            display: block;
+            text-decoration: none;
+            color: #2A2A2A;
+        }
+
+        .exhibition-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .translate-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .language-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .translate-btn {
+            background: #FFFFE3;
+            color: #2A2A2A;
+            border: 2px solid #2A2A2A;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .translate-btn:hover, .translate-btn.active {
+            background: #2A2A2A;
+            color: #FFFFE3;
+        }
+
+        .header-social {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            background: #2A2A2A;
+            border: 2px solid #2A2A2A;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #FFFFE3;
+            font-size: 0.8rem;
+        }
+        
+        .social-link svg {
+            fill: #FFFFE3;
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+
+        .social-link:hover {
+            background: #6E6E6E;
+            border-color: #6E6E6E;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(42,42,42,0.08);
+            border: 1px solid #f0f0f0;
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation */
+        .nav-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.5rem;
+            background: #FFFFE3;
+            color: #2A2A2A;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid #2A2A2A;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #2A2A2A;
+            color: #FFFFE3;
+        }
+
+        /* Artwork Container */
+        .artwork-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .artwork-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #2A2A2A;
+        }
+
+        .artwork-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: #6E6E6E;
+        }
+
+        .artwork-selector {
+            margin: 2rem 0;
+        }
+
+        .artwork-select {
+            padding: 1rem 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            border: 2px solid #2A2A2A;
+            background: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            min-width: 250px;
+        }
+
+        .artwork-select:focus {
+            outline: none;
+            border-color: #6E6E6E;
+        }
+
+        .hint-text {
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 2rem auto;
+            max-width: 600px;
+            color: #2A2A2A;
+            font-style: italic;
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-radius: 10px;
+            border-left: 4px solid #6E6E6E;
+        }
+
+        .reveal-button {
+            background: #2A2A2A;
+            color: #FFFFE3;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 2rem 0;
+            border-radius: 5px;
+            border: 2px solid #2A2A2A;
+        }
+
+        .reveal-button:hover {
+            background: #6E6E6E;
+            border-color: #6E6E6E;
+            transform: translateY(-2px);
+        }
+
+        .reveal-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            background: #2A2A2A;
+        }
+
+        /* Image Container */
+        .image-container {
+            position: relative;
+            margin: 2rem auto;
+            max-width: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .artwork-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(42,42,42,0.15);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1s ease;
+        }
+
+        .artwork-image.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .artwork-info {
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.7s;
+            max-width: 600px;
+            margin: 2rem auto 0;
+            color: #2A2A2A;
+            text-align: center;
+        }
+
+        .artwork-info.shown {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .artwork-artist {
+            font-size: 1rem;
+            color: #6E6E6E;
+            margin-top: 0.5rem;
+        }
+
+        /* Info Page */
+        .info-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .info-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2A2A2A;
+        }
+
+        .info-text {
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #6E6E6E;
+        }
+
+        .concept-credit {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-radius: 10px;
+            border: 2px solid #FFFFE3;
+        }
+
+        .concept-credit strong {
+            color: #2A2A2A;
+            font-size: 1.1rem;
+        }
+
+        .concept-credit a {
+            color: #2A2A2A;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .concept-credit a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2A2A2A;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error state */
+        .error-message {
+            color: #6E6E6E;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #2A2A2A;
+            color: #FFFFE3;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 3px solid #FFFFE3;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-info {
+            text-align: left;
+        }
+
+        .footer-info a {
+            color: #FFFFE3;
+            text-decoration: none;
+        }
+
+        .footer-info a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-info {
+                text-align: center;
+            }
+
+            .exhibition-title {
+                font-size: 2rem;
+            }
+
+            .artwork-title {
+                font-size: 2rem;
+            }
+
+            .artwork-description {
+                font-size: 1rem;
+            }
+
+            .header-social {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-button {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <a href="#" onclick="showHome()" class="logo-link">
+                        <h1 class="exhibition-title">THE IMAGINED</h1>
+                    </a>
+                    <p id="tagline" class="tagline">an exhibition without paintings</p>
+                    <p id="sub-tagline" class="sub-tagline">read / guess / reveal</p>
+                </div>
+                <div class="translate-section">
+                    <div class="language-buttons">
+                        <button id="lang-en" class="translate-btn active" onclick="setLanguage('en')">English</button>
+                        <button id="lang-vi" class="translate-btn" onclick="setLanguage('vi')">Tiếng Việt</button>
+                    </div>
+                    <div class="header-social">
+                        <a href="https://www.instagram.com/ion_playground" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Ion Playground Instagram">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.058 1.644-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                           ION
+                        </a>
+                        <a href="https://realitydn.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Reality Da Nang">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                           REALITY
+                        </a>
+                        <a href="#TheImaginedReality" class="social-link" onclick="shareExhibition()" aria-label="Share Exhibition">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+                           SHARE
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="nav-section">
+                <a href="#" onclick="showInfo()" class="nav-button" id="nav-info">About Exhibition</a>
+                <a href="#" onclick="showHome()" class="nav-button" id="nav-home">Experience Artworks</a>
+            </div>
+
+            <!-- Home/Artwork View -->
+            <div id="artwork-view" class="section">
+                <div class="artwork-container">
+                    <h1 class="artwork-title" id="artwork-title">What do you see when you cannot see?</h1>
+                    <p class="artwork-description" id="artwork-description">
+                        Scan a QR code next to any artwork to begin your journey, or select an artwork number below to explore.
+                    </p>
+                    
+                    <!-- Artwork selector -->
+                    <div id="artwork-selector" class="artwork-selector">
+                        <select id="artwork-select" class="artwork-select">
+                            <option value="" id="select-option">Select an artwork...</option>
+                        </select>
+                    </div>
+
+                    <!-- Hint text (children's description) -->
+                    <div id="hint-container" style="display: none;">
+                        <p class="hint-text" id="hint-text"></p>
+                        <button class="reveal-button" id="reveal-btn" onclick="revealArtwork()">
+                            <span id="reveal-btn-text">Reveal Artwork</span>
+                        </button>
+                    </div>
+
+                    <div class="image-container" id="image-container">
+                        <img id="artwork-image" class="artwork-image" alt="Artwork">
+                    </div>
+
+                    <div class="artwork-info" id="artwork-info">
+                        <div id="artwork-title-revealed"></div>
+                        <div class="artwork-artist" id="artwork-artist"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Page -->
+            <div id="info-view" class="section hidden">
+                <div class="info-content">
+                    <h1 class="info-title" id="info-title">About The Imagined</h1>
+                    <p class="info-text" id="info-text-1">
+                        What do we see when we cannot see? And how do images emerge from words?
+                    </p>
+                    <p class="info-text" id="info-text-2">
+                        <strong>The Imagined</strong> is an exhibition without paintings. In their place — 21 works based on children's descriptions of well-known artworks.
+                    </p>
+                    <p class="info-text" id="info-text-3">
+                        These descriptions are not filtered through the lens of art history or visual education. The children interpret freely — with imagination, honesty, and their own language. Some are literal, some poetic, some wildly inventive.
+                    </p>
+                    <p class="info-text" id="info-text-4">
+                        No images, only language. Each piece invites us to "see" a painting through someone else's eyes — in this case, a child's. Recognizing the artwork becomes an act of interpretation: we reconstruct it within ourselves, guided not by visual cues, but by memory, cultural codes, and the strange accuracy of a child's perspective.
+                    </p>
+                    <div class="concept-credit">
+                        <p><strong id="concept-by">Idea and concept:</strong> <a href="https://www.instagram.com/ion_playground" target="_blank">Nasta Ion (Ion Playground)</a></p>
+                        <p><strong id="presented-by">Presented and supported by:</strong> <a href="https://realitydn.com" target="_blank">REALITY Da Nang</a></p>
+                    </div>
+                    <p class="info-text" id="info-text-5">
+                        Here, language becomes a way of seeing. And imagination — the primary tool of perception.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong id="footer-brand">The Imagined - Interactive Art Exhibition</strong></p>
+                    <p><a href="https://www.instagram.com/ion_playground" target="_blank" id="footer-ion">Ion Playground</a> × <a href="https://realitydn.com" target="_blank" id="footer-reality">REALITY Da Nang</a></p>
+                    <p id="footer-location">86 Mai Thuc Lan, Da Nang</p>
+                </div>
+                <div class="footer-social">
+                    <p id="footer-hashtag">#TheImaginedReality</p>
+                    <p id="footer-share">Share your version of what you see</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translation data
+        const translations = {
+            en: {
+                tagline: 'an exhibition without paintings',
+                'sub-tagline': 'read / guess / reveal',
+                'artwork-title': 'What do you see when you cannot see?',
+                'artwork-description': 'Scan a QR code next to any artwork to begin your journey, or select an artwork number below to explore.',
+                'select-option': 'Select an artwork...',
+                'reveal-btn-text': 'Reveal Artwork',
+                'nav-info': 'About Exhibition',
+                'nav-home': 'Experience Artworks',
+                'info-title': 'About The Imagined',
+                'info-text-1': 'What do we see when we cannot see? And how do images emerge from words?',
+                'info-text-2': 'The Imagined is an exhibition without paintings. In their place — 21 works based on children\'s descriptions of well-known artworks.',
+                'info-text-3': 'These descriptions are not filtered through the lens of art history or visual education. The children interpret freely — with imagination, honesty, and their own language. Some are literal, some poetic, some wildly inventive.',
+                'info-text-4': 'No images, only language. Each piece invites us to "see" a painting through someone else\'s eyes — in this case, a child\'s. Recognizing the artwork becomes an act of interpretation: we reconstruct it within ourselves, guided not by visual cues, but by memory, cultural codes, and the strange accuracy of a child\'s perspective.',
+                'info-text-5': 'Here, language becomes a way of seeing. And imagination — the primary tool of perception.',
+                'concept-by': 'Idea and concept:',
+                'presented-by': 'Presented and supported by:',
+                'footer-brand': 'The Imagined - Interactive Art Exhibition',
+                'footer-ion': 'Ion Playground',
+                'footer-reality': 'REALITY Da Nang',
+                'footer-location': '86 Mai Thuc Lan, Da Nang',
+                'footer-hashtag': '#TheImaginedReality',
+                'footer-share': 'Share your version of what you see'
+            },
+            vi: {
+                tagline: 'một triển lãm không có tranh',
+                'sub-tagline': 'đọc / đoán / khám phá',
+                'artwork-title': 'Chúng ta thấy gì khi không thể nhìn thấy?',
+                'artwork-description': 'Quét mã QR bên cạnh bất kỳ tác phẩm nào để bắt đầu hành trình, hoặc chọn số tác phẩm bên dưới để khám phá.',
+                'select-option': 'Chọn một tác phẩm...',
+                'reveal-btn-text': 'Tiết Lộ Tác Phẩm',
+                'nav-info': 'Về Triển Lãm',
+                'nav-home': 'Trải Nghiệm Tác Phẩm',
+                'info-title': 'Về The Imagined',
+                'info-text-1': 'Chúng ta thấy gì khi không thể nhìn thấy? Và hình ảnh hình thành từ ngôn từ như thế nào?',
+                'info-text-2': 'The Imagined là một triển lãm không có tranh. Thay vào đó — 21 tác phẩm dựa trên lời mô tả của trẻ em về những kiệt tác nổi tiếng.',
+                'info-text-3': 'Những mô tả này không bị ảnh hưởng bởi kiến thức nghệ thuật hay bối cảnh lịch sử. Trẻ em diễn giải một cách tự do — bằng trí tưởng tượng, sự chân thật và ngôn ngữ của riêng mình. Có mô tả thì đơn giản, có mô tả lại đầy chất thơ, và cũng có những mô tả thật bất ngờ.',
+                'info-text-4': 'Không có hình ảnh, chỉ có ngôn từ. Mỗi tác phẩm mời gọi chúng ta "nhìn thấy" một bức tranh qua con mắt của người khác — cụ thể là của một đứa trẻ. Việc nhận ra tác phẩm trở thành một hành vi diễn giải: chúng ta tái tạo lại trong tâm trí, không dựa vào thị giác mà bằng trí nhớ, mã văn hóa và sự chính xác kỳ lạ trong cái nhìn trẻ thơ.',
+                'info-text-5': 'Ở đây, ngôn từ trở thành một cách nhìn. Và trí tưởng tượng — là công cụ cảm nhận quan trọng nhất.',
+                'concept-by': 'Ý tưởng và khái niệm:',
+                'presented-by': 'Được tổ chức và hỗ trợ bởi:',
+                'footer-brand': 'The Imagined - Triển Lãm Nghệ Thuật Tương Tác',
+                'footer-ion': 'Ion Playground',
+                'footer-reality': 'REALITY Đà Nẵng',
+                'footer-location': '86 Mai Thúc Lân, Đà Nẵng',
+                'footer-hashtag': '#TheImaginedReality',
+                'footer-share': 'Chia sẻ phiên bản mà bạn nhìn thấy'
+            }
+        };
+
+        // Artwork data with children's descriptions and real artwork info
+        const artworks = {
+            1: {
+                hint: "Well, they've had a few drinks and now they're dancing… New Year's dance. Carnival.",
+                hintVi: "Chà, họ đã uống vài ly và giờ thì họ đang nhảy múa... Một điệu nhảy mừng năm mới. Lễ hội.",
+                title: "The Dance",
+                titleVi: "Điệu nhảy",
+                artist: "Henri Matisse",
+                artistVi: "Henri Matisse"
+            },
+            2: {
+                hint: "Black-and-white: arms, animals, people, an eye, legs, a dinosaur. A gathering of monsters.",
+                hintVi: "Một bức tranh đen trắng bao gồm: Động vật, con người, một con mắt, tay, chân, một con khủng long. Một cuộc tụ họp của các con quái vật.",
+                title: "Guernica",
+                titleVi: "Guernica",
+                artist: "Pablo Picasso",
+                artistVi: "Pablo Picasso"
+            },
+            3: {
+                hint: "Mona Lisa in a cartoon. Giraffe woman. I see a large oval face, like a nut.",
+                hintVi: "Mona Lisa trong phim hoạt hình. Người phụ nữ hươu cao cổ. Con thấy một khuôn mặt hình bầu dục lớn, giống như một hạt.",
+                title: "Portrait of Jeanne Hébuterne",
+                titleVi: "Chân dung Jeanne Hébuterne",
+                artist: "Amedeo Modigliani",
+                artistVi: "Amedeo Modigliani"
+            },
+            4: {
+                hint: "Grandma and Grandpa with a pitchfork, just standing, staring right at me like in a horror movie.",
+                hintVi: "Ông bà cầm một cây chĩa ba, cứ đứng đó, nhìn chằm chằm vào con như trong một bộ phim kinh dị.",
+                title: "American Gothic",
+                titleVi: "Gothic kiểu Mỹ",
+                artist: "Grant Wood",
+                artistVi: "Grant Wood"
+            },
+            5: {
+                hint: "Mary Poppins going to a party — 80s style. An actress with yellow hair, a pink face, and blue eyeshadow.",
+                hintVi: "Mary Poppins dự tiệc kiểu 80s. Một cô diễn viên tóc vàng, mặt hồng, mắt xanh.",
+                title: "Shot Sage Blue Marilyn",
+                titleVi: "Marilyn xanh xám bị bắn",
+                artist: "Andy Warhol",
+                artistVi: "Andy Warhol"
+            },
+            6: {
+                hint: "Looks like Mona Lisa. She stole the earring from Mr. Krabs. A nun in a blue headscarf.",
+                hintVi: "Trông giống Mona Lisa. Cô ấy đã lấy trộm bông tai của Mr. Krabs. Một nữ tu với khăn trùm đầu màu xanh.",
+                title: "Girl with a Pearl Earring",
+                titleVi: "Thiếu nữ với hoa tai ngọc trai",
+                artist: "Johannes Vermeer",
+                artistVi: "Johannes Vermeer"
+            },
+            7: {
+                hint: "SOS! A wet Sahara. The sea is crying, swallowing the ship. Suicidal souls. None will survive. But beautiful.",
+                hintVi: "SOS! Một sa mạc Sahara ướt át. Biển đang khóc, nuốt chửng con tàu. Những linh hồn tuyệt vọng. Sẽ chẳng ai sống sót. Nhưng thật đẹp.",
+                title: "The Ninth Wave",
+                titleVi: "Con sóng thứ chín",
+                artist: "Ivan Aivazovsky",
+                artistVi: "Ivan Aivazovsky"
+            },
+            8: {
+                hint: "It's nighttime, swirls in the sky, lots of little houses below. The sky through the eyes of an alcoholic.",
+                hintVi: "Trời đã về đêm, những vòng xoáy trên bầu trời, bên dưới là nhiều ngôi nhà nhỏ. Bầu trời qua đôi mắt của một kẻ nghiện rượu.",
+                title: "The Starry Night",
+                titleVi: "Đêm đầy sao",
+                artist: "Vincent van Gogh",
+                artistVi: "Vincent van Gogh"
+            },
+            9: {
+                hint: "A person in SHOCK. A ghost afraid of the sea. Like an alien fell from the sky and saw us — a hopeless crowd. ААAА!",
+                hintVi: "Một người trong cơn sốc. Một hồn ma sợ biển. Tựa như một người ngoài hành tinh rơi từ bầu trời và nhìn thấy chúng ta - một đám người tuyệt vọng. AAAAA!",
+                title: "The Scream",
+                titleVi: "Tiếng thét",
+                artist: "Edvard Munch",
+                artistVi: "Edvard Munch"
+            },
+            10: {
+                hint: "A classic. An almost perfect woman with a mysterious smile that makes you want to uncover her secret.",
+                hintVi: "Một biểu tượng kinh điển. Một người phụ nữ gần như hoàn hảo với nụ cười bí ẩn khiến bạn muốn khám phá bí mật của cô ấy.",
+                title: "Mona Lisa (La Gioconda)",
+                titleVi: "Mona Lisa (hay La Gioconda)",
+                artist: "Leonardo da Vinci",
+                artistVi: "Leonardo da Vinci"
+            },
+            11: {
+                hint: "Two drones controlled from the ground by God. Lovers' dream. Rural Superman. Freedom. Lightness.",
+                hintVi: "Hai chiếc drone được Chúa điều khiển từ mặt đất. Giấc mơ của những kẻ đang yêu. Siêu nhân kiểu nông thôn. Tự do. Nhẹ tênh.",
+                title: "Over the Town",
+                titleVi: "Trên thị trấn",
+                artist: "Marc Chagall",
+                artistVi: "Marc Chagall"
+            },
+            12: {
+                hint: "War and Peace. Warriors are getting ready for battle. D'Artagnan and the Three Musketeers. A silent disco.",
+                hintVi: "Chiến tranh và hòa bình. Các chiến binh chuẩn bị ra trận. D'Artagnan và Ba Chàng Lính Ngự Lâm. Một buổi tiệc im lặng.",
+                title: "The Night Watch",
+                titleVi: "Đội canh gác đêm",
+                artist: "Rembrandt van Rijn",
+                artistVi: "Rembrandt van Rijn"
+            },
+            13: {
+                hint: "The end of the world. God tried to heal the hopeless, but failed. Judgement Day. Chaos in the city.",
+                hintVi: "Tận thế. Chúa đã cố chữa lành những kẻ tuyệt vọng, nhưng thất bại. Ngày phán xét. Thành phố chìm trong hỗn loạn.",
+                title: "The Last Day of Pompeii",
+                titleVi: "Ngày cuối cùng của Pompeii",
+                artist: "Karl Bryullov",
+                artistVi: "Karl Bryullov"
+            },
+            14: {
+                hint: "A clay-like world. Everything is melting. Time stands still. On the shore, clocks lie like pieces of cloth.",
+                hintVi: "Một thế giới như đất sét. Mọi thứ đang tan chảy. Thời gian đứng yên. Trên bờ biển, những chiếc đồng hồ nằm như những mảnh vải.",
+                title: "The Persistence of Memory",
+                titleVi: "Sự dai dẳng của ký ức",
+                artist: "Salvador Dalí",
+                artistVi: "Salvador Dalí"
+            },
+            15: {
+                hint: "A yellow cliff with a girl and a guy inside. Pixels. A man in a carpet is kissing a lady.",
+                hintVi: "Một vách đá màu vàng, bên trong có một cô gái và một chàng trai. Các điểm pixels. Một người đàn ông trong tấm thảm đang hôn một cô gái.",
+                title: "The Kiss",
+                titleVi: "Nụ hôn",
+                artist: "Gustav Klimt",
+                artistVi: "Gustav Klimt"
+            },
+            16: {
+                hint: "She was born… Sea princess. Underwater world. Surfing on a seashell. Flying people.",
+                hintVi: "Cô ấy đã được sinh ra… Công chúa biển cả. Thế giới dưới nước. Lướt sóng trên vỏ sò. Những người đang bay.",
+                title: "The Birth of Venus",
+                titleVi: "Sự ra đời của thần Vệ Nữ",
+                artist: "Sandro Botticelli",
+                artistVi: "Sandro Botticelli"
+            },
+            17: {
+                hint: "A mother walking with her son through the clouds. What's going on in the sky? A woman holds the future.",
+                hintVi: "Một người mẹ dắt con trai đi qua những đám mây. Chuyện gì đang xảy ra trên bầu trời vậy? Một người phụ nữ đang nắm giữ tương lai.",
+                title: "The Sistine Madonna",
+                titleVi: "Đức Mẹ Sixtine",
+                artist: "Raphael Sanzio",
+                artistVi: "Raphael Sanzio"
+            },
+            18: {
+                hint: "Hitman. Someone who tries not to be seen in public. The creator of Apple. Einstein. Mystery.",
+                hintVi: "Sát thủ. Một người luôn cố gắng không xuất hiện trước công chúng. Người sáng lập Apple. Einstein. Một điều bí ẩn.",
+                title: "The Son of Man",
+                titleVi: "Con trai của loài người",
+                artist: "René Magritte",
+                artistVi: "René Magritte"
+            },
+            19: {
+                hint: "A feast for the world. A formal dinner. The gods are dining. The upper class watches from above.",
+                hintVi: "Bữa tiệc dành cho cả thế giới. Một bữa tối trang trọng. Các vị thần đang dùng bữa. Giới thượng lưu quan sát từ trên cao.",
+                title: "The Last Supper",
+                titleVi: "Bữa tiệc ly",
+                artist: "Leonardo da Vinci",
+                artistVi: "Leonardo da Vinci"
+            },
+            20: {
+                hint: "Darkness with no meaning. The most diverse painting in the world. A very even square. A tile.",
+                hintVi: "Một vùng tối vô nghĩa. Bức tranh đa dạng nhất thế giới. Một hình vuông thật đều. Một viên gạch.",
+                title: "Black Square",
+                titleVi: "Hình vuông đen",
+                artist: "Kazimir Malevich",
+                artistVi: "Kazimir Malevich"
+            },
+            21: {
+                hint: "Masha and the Bear. How the Animals Walk upon Mother Earth. The Bear Cubs Ran Away from Their Mother.",
+                hintVi: "Masha và Gấu. Cách động vật bước đi trên Đất Mẹ. Gấu con chạy trốn khỏi mẹ.",
+                title: "Morning in a Pine Forest",
+                titleVi: "Buổi sáng trong rừng thông",
+                artist: "Ivan Shishkin & Mikhail Savitsky",
+                artistVi: "Ivan Shishkin & Mikhail Savitsky"
+            }
+        };
+
+        let currentArtwork = null;
+        let currentLanguage = 'en';
+
+        function init() {
+            populateArtworkSelector();
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const artworkParam = urlParams.get('artwork') || window.location.hash.replace('#', '');
+            
+            if (artworkParam && artworks[artworkParam]) {
+                loadArtwork(artworkParam);
+            }
+        }
+
+        function populateArtworkSelector() {
+            const selector = document.getElementById('artwork-select');
+            selector.innerHTML = `<option value="" id="select-option">${translations[currentLanguage]['select-option']}</option>`;
+            
+            for (let i = 1; i <= 21; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `${String(i).padStart(2, '0')} - The Imagined`;
+                selector.appendChild(option);
+            }
+
+            selector.addEventListener('change', function() {
+                if (this.value) {
+                    loadArtwork(this.value);
+                }
+            });
+        }
+
+        function loadArtwork(artworkId) {
+            const artwork = artworks[artworkId];
+            if (!artwork) return;
+
+            currentArtwork = artworkId;
+            
+            // Show hint (children's description)
+            const hint = currentLanguage === 'en' ? artwork.hint : artwork.hintVi;
+            document.getElementById('hint-text').textContent = hint;
+            
+            // Setup image
+            const img = document.getElementById('artwork-image');
+            img.src = `artworks/${artworkId}.jpg`;
+            img.alt = currentLanguage === 'en' ? artwork.title : artwork.titleVi;
+            
+            // Show hint container and hide selector
+            document.getElementById('hint-container').style.display = 'block';
+            document.getElementById('artwork-selector').style.display = 'none';
+            
+            // Reset states
+            resetRevealState();
+        }
+
+        function resetRevealState() {
+            const artworkInfo = document.getElementById('artwork-info');
+            const container = document.getElementById('image-container');
+            const img = document.getElementById('artwork-image');
+            
+            artworkInfo.classList.remove('shown');
+            container.style.display = 'none';
+            img.classList.remove('revealed');
+            
+            document.getElementById('reveal-btn').disabled = false;
+        }
+
+        function revealArtwork() {
+            if (!currentArtwork) return;
+            
+            const button = document.getElementById('reveal-btn');
+            const container = document.getElementById('image-container');
+            const img = document.getElementById('artwork-image');
+            const artworkInfo = document.getElementById('artwork-info');
+            const artwork = artworks[currentArtwork];
+            
+            button.disabled = true;
+            container.style.display = 'flex';
+            
+            // Show loading
+            container.innerHTML = '<div class="loading"></div>';
+            
+            // Wait for image to load
+            img.onload = () => {
+                // Restore image
+                container.innerHTML = '';
+                container.appendChild(img);
+                
+                // Update artwork info
+                const title = currentLanguage === 'en' ? artwork.title : artwork.titleVi;
+                const artist = currentLanguage === 'en' ? artwork.artist : artwork.artistVi;
+                
+                document.getElementById('artwork-title-revealed').textContent = title;
+                document.getElementById('artwork-artist').textContent = artist;
+                
+                // Start reveal animation
+                setTimeout(() => {
+                    img.classList.add('revealed');
+                    
+                    // Show artwork info
+                    setTimeout(() => {
+                        artworkInfo.classList.add('shown');
+                    }, 800);
+                }, 100);
+            };
+            
+            img.onerror = () => {
+                container.innerHTML = '<div class="error-message">Image not found. Please ensure the artwork file exists in the artworks folder.</div>';
+            };
+            
+            // If image is already loaded
+            if (img.complete) {
+                img.onload();
+            }
+        }
+
+        function showHome() {
+            document.getElementById('artwork-view').classList.remove('hidden');
+            document.getElementById('info-view').classList.add('hidden');
+            
+            // Reset to home state
+            currentArtwork = null;
+            updateContentLanguage();
+            document.getElementById('hint-container').style.display = 'none';
+            document.getElementById('artwork-selector').style.display = 'block';
+            document.getElementById('image-container').style.display = 'none';
+            document.getElementById('artwork-info').classList.remove('shown');
+            document.getElementById('artwork-select').value = '';
+        }
+
+        function showInfo() {
+            document.getElementById('artwork-view').classList.add('hidden');
+            document.getElementById('info-view').classList.remove('hidden');
+        }
+
+        function updateContentLanguage() {
+            // Update all translatable elements
+            const elementsToTranslate = translations[currentLanguage];
+            for (const id in elementsToTranslate) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = elementsToTranslate[id];
+                }
+            }
+            
+            // Update artwork selector
+            populateArtworkSelector();
+            
+            // Update current artwork if loaded
+            if (currentArtwork) {
+                const artwork = artworks[currentArtwork];
+                const hint = currentLanguage === 'en' ? artwork.hint : artwork.hintVi;
+                document.getElementById('hint-text').textContent = hint;
+                
+                // If artwork is revealed, update title and artist
+                if (document.getElementById('artwork-info').classList.contains('shown')) {
+                    const title = currentLanguage === 'en' ? artwork.title : artwork.titleVi;
+                    const artist = currentLanguage === 'en' ? artwork.artist : artwork.artistVi;
+                    
+                    document.getElementById('artwork-title-revealed').textContent = title;
+                    document.getElementById('artwork-artist').textContent = artist;
+                }
+            }
+        }
+
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+            
+            currentLanguage = lang;
+            
+            document.querySelectorAll('.translate-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`lang-${lang}`).classList.add('active');
+
+            updateContentLanguage();
+        }
+
+        function shareExhibition() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'The Imagined - Interactive Art Exhibition',
+                    text: 'What do you see when you cannot see? Experience art through children\'s eyes.',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard! Share #TheImaginedReality');
+                });
+            }
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', init);
+        window.addEventListener('popstate', init);
+    </script>
+</body>
+</html>
